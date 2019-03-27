@@ -6,7 +6,7 @@ from keras.layers import Dense, Dropout, Activation, Flatten
 
 
 num_classes = 10
-batch_size = 100
+batch_size = 500
 epochs = 100
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
