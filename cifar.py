@@ -1,13 +1,16 @@
+
+import time
 import keras
 from keras.datasets import cifar10
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Dense, Dropout, Activation, Flatten
-
+from keras.callbacks import ModelCheckpoint
 
 num_classes = 10
 batch_size = 500
 epochs = 100
+model_name = time.strftime('%Y-%m-%d-%H-%M-%S')
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
@@ -43,12 +46,16 @@ model.add(Dense(num_classes))
 model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
-              metrics=['accuracy'])
+              optimizer='rmsprop',
+              metrics=['categorical_accuracy', 'accuracy'])
+
+checkpoint = ModelCheckpoint('models/' + model_name + '.h5',
+                             monitor='val_categorical_accuracy', verbose=1, save_best_only=True, save_weights_only=True, mode='auto')
 
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
           validation_split=0.05,
+          callbacks=[checkpoint],
           shuffle=True,
           verbose=1)
