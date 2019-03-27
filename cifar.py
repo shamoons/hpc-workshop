@@ -47,10 +47,10 @@ model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',
-              metrics=['categorical_accuracy', 'accuracy'])
+              metrics=[accuracy'])
 
 checkpoint = ModelCheckpoint('models/' + model_name + '.h5',
-                             monitor='val_categorical_accuracy', verbose=1, save_best_only=True, save_weights_only=True, mode='auto')
+                             monitor='val_accuracy', verbose=1, save_best_only=True, save_weights_only=True, mode='auto')
 
 model.fit(x_train, y_train,
           batch_size=batch_size,
