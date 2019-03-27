@@ -5,7 +5,6 @@ verify_ssl = true
 
 [packages]
 keras = "*"
-autokeras = "*"
 
 [requires]
 python_version = "3.6"
