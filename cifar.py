@@ -8,8 +8,8 @@ from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.callbacks import ModelCheckpoint
 
 num_classes = 10
-batch_size = 500
-epochs = 100
+batch_size = 128
+epochs = 150
 model_name = time.strftime('%Y-%m-%d-%H-%M-%S')
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
